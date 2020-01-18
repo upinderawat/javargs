@@ -1,6 +1,11 @@
 # Instructions For The Tutorial.
     Please read the instructions carefully and try to complete them during the tutorial.
- 
+
+### Install/Update Java
+      * sudo add-apt-repository ppa:openjdk-r/ppa
+      * sudo apt-get update -q 
+      * sudo apt install -y openjdk-11-jdk 
+
 ### For The Main File
 
       * Clone this repo 
