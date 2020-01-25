@@ -1,11 +1,14 @@
-package com.cleancoder.args;
+package com.cleancoder.args.Marshalers;
+
+import com.cleancoder.args.Exceptions.ArgsException;
+import com.cleancoder.args.Exceptions.MalformedMap;
+import com.cleancoder.args.Exceptions.MissingMap;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-import static com.cleancoder.args.ArgsException.ErrorCode.*;
 
 public class MapArgumentMarshaler implements ArgumentMarshaler {
 	private Map<String, String> map = new HashMap<>();
@@ -16,11 +19,11 @@ public class MapArgumentMarshaler implements ArgumentMarshaler {
 			for (String entry : mapEntries) {
 				String[] entryComponents = entry.split(":");
 				if (entryComponents.length != 2)
-					throw new ArgsException(MALFORMED_MAP);
+					throw new MalformedMap();
 				map.put(entryComponents[0], entryComponents[1]);
 			}
 		} catch (NoSuchElementException e) {
-			throw new ArgsException(MISSING_MAP);
+			throw new MissingMap();
 		}
 	}
 

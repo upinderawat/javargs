@@ -1,9 +1,11 @@
-package com.cleancoder.args;
+package com.cleancoder.args.Marshalers;
+
+import com.cleancoder.args.Exceptions.ArgsException;
+import com.cleancoder.args.Exceptions.MissingString;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import static com.cleancoder.args.ArgsException.ErrorCode.MISSING_STRING;
 
 public class StringArgumentMarshaler implements ArgumentMarshaler {
 	private String stringValue = "";
@@ -12,7 +14,7 @@ public class StringArgumentMarshaler implements ArgumentMarshaler {
 		try {
 			stringValue = currentArgument.next();
 		} catch (NoSuchElementException e) {
-			throw new ArgsException(MISSING_STRING);
+			throw new MissingString();
 		}
 	}
 

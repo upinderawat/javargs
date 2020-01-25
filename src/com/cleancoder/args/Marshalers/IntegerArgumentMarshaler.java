@@ -1,6 +1,8 @@
-package com.cleancoder.args;
+package com.cleancoder.args.Marshalers;
 
-import static com.cleancoder.args.ArgsException.ErrorCode.*;
+import com.cleancoder.args.Exceptions.ArgsException;
+import com.cleancoder.args.Exceptions.InvalidInteger;
+import com.cleancoder.args.Exceptions.MissingInteger;
 
 import java.util.*;
 
@@ -13,9 +15,9 @@ public class IntegerArgumentMarshaler implements ArgumentMarshaler {
 			parameter = currentArgument.next();
 			intValue = Integer.parseInt(parameter);
 		} catch (NoSuchElementException e) {
-			throw new ArgsException(MISSING_INTEGER);
+			throw new MissingInteger();
 		} catch (NumberFormatException e) {
-			throw new ArgsException(INVALID_INTEGER, parameter);
+			throw new InvalidInteger(parameter);
 		}
 	}
 

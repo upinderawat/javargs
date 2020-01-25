@@ -1,6 +1,7 @@
-package com.cleancoder.args;
-
-import static com.cleancoder.args.ArgsException.ErrorCode.*;
+package com.cleancoder.args.Marshalers;
+import com.cleancoder.args.Exceptions.ArgsException;
+import com.cleancoder.args.Exceptions.InvalidDouble;
+import com.cleancoder.args.Exceptions.MissingDouble;
 
 import java.util.*;
 
@@ -13,9 +14,9 @@ public class DoubleArgumentMarshaler implements ArgumentMarshaler {
 			parameter = currentArgument.next();
 			doubleValue = Double.parseDouble(parameter);
 		} catch (NoSuchElementException e) {
-			throw new ArgsException(MISSING_DOUBLE);
+			throw new MissingDouble();
 		} catch (NumberFormatException e) {
-			throw new ArgsException(INVALID_DOUBLE, parameter);
+			throw new InvalidDouble(parameter);
 		}
 	}
 

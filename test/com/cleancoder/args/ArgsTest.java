@@ -1,5 +1,6 @@
 package com.cleancoder.args;
 
+import com.cleancoder.args.Exceptions.ArgsException;
 import org.junit.Test;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
@@ -7,7 +8,6 @@ import org.junit.runner.notification.Failure;
 
 import java.util.Map;
 
-import static com.cleancoder.args.ArgsException.ErrorCode.*;
 import static org.junit.Assert.*;
 
 
@@ -37,8 +37,7 @@ public class ArgsTest {
 			new Args("", new String[]{"-x"});
 			fail();
 		} catch (ArgsException e) {
-			assertEquals(UNEXPECTED_ARGUMENT, e.getErrorCode());
-			assertEquals('x', e.getErrorArgumentId());
+			assertEquals(Character.valueOf('x'), e.getErrorArgumentId());
 		}
 	}
 
@@ -48,8 +47,8 @@ public class ArgsTest {
 			new Args("", new String[]{"-x", "-y"});
 			fail();
 		} catch (ArgsException e) {
-			assertEquals(UNEXPECTED_ARGUMENT, e.getErrorCode());
-			assertEquals('x', e.getErrorArgumentId());
+			//assertEquals(UNEXPECTED_ARGUMENT, e.getErrorCode());
+			assertEquals(Character.valueOf('x'), e.getErrorArgumentId());
 		}
 
 	}
@@ -60,8 +59,7 @@ public class ArgsTest {
 			new Args("*", new String[]{});
 			fail("Args constructor should have thrown exception");
 		} catch (ArgsException e) {
-			assertEquals(INVALID_ARGUMENT_NAME, e.getErrorCode());
-			assertEquals('*', e.getErrorArgumentId());
+			assertEquals(Character.valueOf('*'), e.getErrorArgumentId());
 		}
 	}
 
@@ -71,8 +69,7 @@ public class ArgsTest {
 			new Args("f~", new String[]{});
 			fail("Args constructor should have throws exception");
 		} catch (ArgsException e) {
-			assertEquals(INVALID_ARGUMENT_FORMAT, e.getErrorCode());
-			assertEquals('f', e.getErrorArgumentId());
+			assertEquals(Character.valueOf('f'), e.getErrorArgumentId());
 		}
 	}
 
@@ -97,8 +94,7 @@ public class ArgsTest {
 			new Args("x*", new String[]{"-x"});
 			fail();
 		} catch (ArgsException e) {
-			assertEquals(MISSING_STRING, e.getErrorCode());
-			assertEquals('x', e.getErrorArgumentId());
+			assertEquals(Character.valueOf('x'), e.getErrorArgumentId());
 		}
 	}
 
@@ -124,11 +120,8 @@ public class ArgsTest {
 			new Args("x#", new String[]{"-x", "Forty two"});
 			fail();
 		} catch (ArgsException e) {
-			assertEquals(INVALID_INTEGER, e.getErrorCode());
-			assertEquals('x', e.getErrorArgumentId());
 			assertEquals("Forty two", e.getErrorParameter());
 		}
-
 	}
 
 	@Test
@@ -137,8 +130,7 @@ public class ArgsTest {
 			new Args("x#", new String[]{"-x"});
 			fail();
 		} catch (ArgsException e) {
-			assertEquals(MISSING_INTEGER, e.getErrorCode());
-			assertEquals('x', e.getErrorArgumentId());
+			assertEquals(Character.valueOf('x'), e.getErrorArgumentId());
 		}
 	}
 
@@ -155,8 +147,7 @@ public class ArgsTest {
 			new Args("x##", new String[]{"-x", "Forty two"});
 			fail();
 		} catch (ArgsException e) {
-			assertEquals(INVALID_DOUBLE, e.getErrorCode());
-			assertEquals('x', e.getErrorArgumentId());
+			assertEquals(Character.valueOf('x'), e.getErrorArgumentId());
 			assertEquals("Forty two", e.getErrorParameter());
 		}
 	}
@@ -167,8 +158,7 @@ public class ArgsTest {
 			new Args("x##", new String[]{"-x"});
 			fail();
 		} catch (ArgsException e) {
-			assertEquals(MISSING_DOUBLE, e.getErrorCode());
-			assertEquals('x', e.getErrorArgumentId());
+			assertEquals(Character.valueOf('x'), e.getErrorArgumentId());
 		}
 	}
 
@@ -187,8 +177,7 @@ public class ArgsTest {
 			new Args("x[*]", new String[] {"-x"});
 			fail();
 		} catch (ArgsException e) {
-			assertEquals(MISSING_STRING,e.getErrorCode());
-			assertEquals('x', e.getErrorArgumentId());
+			assertEquals(Character.valueOf('x'), e.getErrorArgumentId());
 		}
 	}
 
@@ -244,4 +233,3 @@ public class ArgsTest {
 	}
 
 }
-
