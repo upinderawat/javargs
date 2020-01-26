@@ -93,26 +93,26 @@ public class Args {
 	}
 
 	public boolean getBoolean(Character arg) {
-		return BooleanArgumentMarshaler.getValue(marshalers.get(arg));
+		return (boolean)marshalers.get(arg).get();
 	}
 
 	public String getString(Character arg) {
-		return StringArgumentMarshaler.getValue(marshalers.get(arg));
+		return (String)marshalers.get(arg).get();
 	}
 
 	public int getInt(Character arg) {
-		return IntegerArgumentMarshaler.getValue(marshalers.get(arg));
+		return (int)marshalers.get(arg).get();
 	}
 
 	public double getDouble(Character arg) {
-		return DoubleArgumentMarshaler.getValue(marshalers.get(arg));
+		return (double)marshalers.get(arg).get();
 	}
 
 	public String[] getStringArray(Character arg) {
-		return StringArrayArgumentMarshaler.getValue(marshalers.get(arg));
+		return (String[])marshalers.get(arg).get();
 	}
 
 	public Map<String, String> getMap(Character arg) {
-		return MapArgumentMarshaler.getValue(marshalers.get(arg));
+		return (Map<String, String>)marshalers.get(arg).get();
 	}
 }

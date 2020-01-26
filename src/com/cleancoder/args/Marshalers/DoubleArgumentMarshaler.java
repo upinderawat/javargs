@@ -20,10 +20,9 @@ public class DoubleArgumentMarshaler implements ArgumentMarshaler {
 		}
 	}
 
-	public static double getValue(ArgumentMarshaler am) {
-		if (am != null && am instanceof DoubleArgumentMarshaler)
-			return ((DoubleArgumentMarshaler) am).doubleValue;
-		else
-			return 0.0;
+	@Override
+	public Object get() {
+		return doubleValue;
 	}
+
 }

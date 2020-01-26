@@ -1,6 +1,6 @@
 package com.cleancoder.args.Exceptions;
 
-public class ArgsException extends Exception {
+public abstract class ArgsException extends Exception {
 	private Character errorArgumentId = '\0';
 	private String errorParameter = null;
 
@@ -16,7 +16,7 @@ public class ArgsException extends Exception {
 		this.errorArgumentId = errorArgumentId;
 	}
 
-	public String errorMessage(){ return ""; }
+	public abstract String errorMessage();
 
 	public Character getErrorArgumentId() {
 		return errorArgumentId;
@@ -33,6 +33,5 @@ public class ArgsException extends Exception {
 	public void setErrorParameter(String errorParameter) {
 		this.errorParameter = errorParameter;
 	}
-
 
 }

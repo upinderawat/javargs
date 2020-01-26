@@ -11,10 +11,8 @@ public class BooleanArgumentMarshaler implements ArgumentMarshaler {
 		booleanValue = true;
 	}
 
-	public static boolean getValue(ArgumentMarshaler am) {
-		if (am != null && am instanceof BooleanArgumentMarshaler)
-			return ((BooleanArgumentMarshaler) am).booleanValue;
-		else
-			return false;
+	@Override
+	public Object get() {
+		return booleanValue;
 	}
 }

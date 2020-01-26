@@ -27,10 +27,9 @@ public class MapArgumentMarshaler implements ArgumentMarshaler {
 		}
 	}
 
-	public static Map<String, String> getValue(ArgumentMarshaler am) {
-		if (am != null && am instanceof MapArgumentMarshaler)
-			return ((MapArgumentMarshaler) am).map;
-		else
-			return new HashMap<>();
+	@Override
+	public Object get() {
+		return map;
 	}
+
 }

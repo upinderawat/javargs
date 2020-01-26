@@ -17,10 +17,9 @@ public class StringArrayArgumentMarshaler implements ArgumentMarshaler {
 		}
 	}
 
-	public static String[] getValue(ArgumentMarshaler am) {
-		if (am != null && am instanceof StringArrayArgumentMarshaler)
-			return ((StringArrayArgumentMarshaler) am).strings.toArray(new String[0]);
-		else
-			return new String[0];
+	@Override
+	public Object get() {
+		return strings.toArray(new String[0]);
 	}
+
 }
