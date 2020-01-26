@@ -1,22 +1,20 @@
 package com.cleancoder.args;
 
-import com.cleancoder.args.Exceptions.ArgsException;
+import com.cleancoder.args.exceptions.ArgsException;
 
 public class ArgsMain {
 	public static void main(String[] args) {
 		try {
-			new Args("x#", new String[]{"-x", "42"});
-//			Args arg = new Args("l,p#,d*", args);
-//			boolean logging = arg.getBoolean('l');
-//			int port = arg.getInt('p');
-//			String directory = arg.getString('d');
-//			executeApplication(logging, port, directory);
+//			Args arg = new Args("b, a[*], p#", new String[]{"-b", "-a", "e3","-a","e4","-p", "12"});
+			Args arg = new Args("x,y", new String[]{"-x", "alpha", "-y", "beta"});//			int port = arg.getInt('p');
+			System.out.println(arg.getBoolean('x'));
+			System.out.println(arg.getBoolean('y'));
 		} catch (ArgsException e) {
 			System.out.printf("Argument error: %s\n", e.errorMessage());
 		}
 	}
 
-	private static void executeApplication(boolean logging, int port, String directory) {
-		System.out.printf("logging is %s, port:%d, directory:%s\n",logging, port, directory);
+	private static void executeApplication(String directory) {
+		System.out.printf(" directory:%s\n" ,directory);
 	}
 }

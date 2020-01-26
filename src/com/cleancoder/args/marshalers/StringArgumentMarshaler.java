@@ -1,7 +1,7 @@
-package com.cleancoder.args.Marshalers;
+package com.cleancoder.args.marshalers;
 
-import com.cleancoder.args.Exceptions.ArgsException;
-import com.cleancoder.args.Exceptions.MissingString;
+import com.cleancoder.args.exceptions.ArgsException;
+import com.cleancoder.args.exceptions.MissingString;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

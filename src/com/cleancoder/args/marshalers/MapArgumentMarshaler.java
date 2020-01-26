@@ -1,8 +1,8 @@
-package com.cleancoder.args.Marshalers;
+package com.cleancoder.args.marshalers;
 
-import com.cleancoder.args.Exceptions.ArgsException;
-import com.cleancoder.args.Exceptions.MalformedMap;
-import com.cleancoder.args.Exceptions.MissingMap;
+import com.cleancoder.args.exceptions.ArgsException;
+import com.cleancoder.args.exceptions.MalformedMap;
+import com.cleancoder.args.exceptions.MissingMap;
 
 import java.util.HashMap;
 import java.util.Iterator;

@@ -1,4 +1,4 @@
-package com.cleancoder.args.Exceptions;
+package com.cleancoder.args.exceptions;
 
 public class InvalidArgumentFormat extends ArgsException{
 	public InvalidArgumentFormat() {}
@@ -13,6 +13,6 @@ public class InvalidArgumentFormat extends ArgsException{
 
 	@Override
 	public String errorMessage() {
-		return String.format("'%s' is not a valid argument format.", super.getErrorParameter());
+		return String.format("'%s' is not a valid argument format.", super.getErrorArgumentId());
 	}
 }

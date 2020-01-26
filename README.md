@@ -1,5 +1,7 @@
-## Java Version of Argument Parser
+## Java Argument Parser
+The Code has been forked from Uncle Bob's Clean code Args.
 [Credits: Uncle Bob Clean Code](https://github.com/unclebob/javaargs)
+
 
 ### Usage
 Schema:
@@ -9,5 +11,10 @@ Schema:
  - char##  - double arg.
  - char[*] - one element of a string array.
 
-Example schema: (f,s*,n#,a##,p[*])
-Coresponding command line: "-f -s Bob -n 1 -a 3.2 -p e1 -p e2 -p e3
+### Example 
+* schema * : (f,s*,n#,a##,p[*])
+* Coresponding command line: * "-f -s Bob -n 1 -a 3.2 -p e1 -p e2 -p e3
+
+### Build
+### Test
+### Run

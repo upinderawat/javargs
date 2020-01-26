@@ -1,4 +1,4 @@
-package com.cleancoder.args.Exceptions;
+package com.cleancoder.args.exceptions;
 
 public class MalformedMap extends ArgsException {
 	public MalformedMap() {}

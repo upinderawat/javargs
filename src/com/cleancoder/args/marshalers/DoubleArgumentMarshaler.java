@@ -1,7 +1,7 @@
-package com.cleancoder.args.Marshalers;
-import com.cleancoder.args.Exceptions.ArgsException;
-import com.cleancoder.args.Exceptions.InvalidDouble;
-import com.cleancoder.args.Exceptions.MissingDouble;
+package com.cleancoder.args.marshalers;
+import com.cleancoder.args.exceptions.ArgsException;
+import com.cleancoder.args.exceptions.InvalidDouble;
+import com.cleancoder.args.exceptions.MissingDouble;
 
 import java.util.*;
 

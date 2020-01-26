@@ -1,4 +1,4 @@
-package com.cleancoder.args.Exceptions;
+package com.cleancoder.args.exceptions;
 
 public class InvalidArgumentName extends ArgsException {
 	public InvalidArgumentName() {

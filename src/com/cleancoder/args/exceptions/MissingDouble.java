@@ -1,4 +1,4 @@
-package com.cleancoder.args.Exceptions;
+package com.cleancoder.args.exceptions;
 
 public class MissingDouble extends ArgsException {
 	public MissingDouble() {}

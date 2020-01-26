@@ -1,4 +1,4 @@
-package com.cleancoder.args.Exceptions;
+package com.cleancoder.args.exceptions;
 
 public class MissingMap extends ArgsException {
 	public MissingMap() {}

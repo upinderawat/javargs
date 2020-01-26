@@ -1,6 +1,6 @@
 package com.cleancoder.args;
 
-import com.cleancoder.args.Exceptions.*;
+import com.cleancoder.args.exceptions.*;
 import junit.framework.TestCase;
 
 

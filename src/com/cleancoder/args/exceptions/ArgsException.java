@@ -1,4 +1,4 @@
-package com.cleancoder.args.Exceptions;
+package com.cleancoder.args.exceptions;
 
 public abstract class ArgsException extends Exception {
 	private Character errorArgumentId = '\0';

@@ -1,4 +1,4 @@
-package com.cleancoder.args.Exceptions;
+package com.cleancoder.args.exceptions;
 
 public class UnexpectedArgument extends ArgsException {
 	public UnexpectedArgument() {}

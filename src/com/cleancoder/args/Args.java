@@ -1,9 +1,9 @@
 package com.cleancoder.args;
 
-import com.cleancoder.args.Exceptions.ArgsException;
-import com.cleancoder.args.Exceptions.InvalidArgumentFormat;
-import com.cleancoder.args.Exceptions.UnexpectedArgument;
-import com.cleancoder.args.Marshalers.*;
+import com.cleancoder.args.exceptions.ArgsException;
+import com.cleancoder.args.exceptions.InvalidArgumentFormat;
+import com.cleancoder.args.exceptions.UnexpectedArgument;
+import com.cleancoder.args.marshalers.*;
 
 import java.util.*;
 
