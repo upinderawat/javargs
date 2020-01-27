@@ -1,5 +1,7 @@
 ## Java Argument Parser
-The Code has been forked from Uncle Bob's Clean code Args.
+The Code has been forked from Uncle Bob's Clean code Args. 
+@author: Upinder Singh (2019201083)
+
 [Credits: Uncle Bob Clean Code](https://github.com/unclebob/javaargs)
 
 

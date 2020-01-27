@@ -1,8 +1,6 @@
 package com.cleancoder.args;
 
-import com.cleancoder.args.exceptions.ArgsException;
-import com.cleancoder.args.exceptions.InvalidArgumentFormat;
-import com.cleancoder.args.exceptions.UnexpectedArgument;
+import com.cleancoder.args.exceptions.*;
 import com.cleancoder.args.marshalers.*;
 
 import java.util.*;
@@ -62,7 +60,7 @@ public class Args {
 				parseArgumentCharacters(argString.substring(1));
 			} else {
 				currentArgument.previous();
-				break;
+				throw new InvalidArgumentFormat(argString);
 			}
 		}
 	}
@@ -92,27 +90,93 @@ public class Args {
 		return currentArgument.nextIndex();
 	}
 
-	public boolean getBoolean(Character arg) {
-		return (boolean)marshalers.get(arg).get();
+	public boolean getBoolean(Character arg) throws ArgsException{
+		if(marshalers.containsKey(arg)){
+			ArgumentMarshaler booleanMarshaler = marshalers.get(arg);
+			if(booleanMarshaler instanceof BooleanArgumentMarshaler){
+				return (boolean)booleanMarshaler.get();
+			}
+			else{
+				throw new InvalidArgumentMarshalerException("\nExpected: BooleanMarshaler\nActual: "+ booleanMarshaler.toString());
+			}
+		}
+		else{
+			throw new InvalidArgumentName(arg, null);
+		}
 	}
 
-	public String getString(Character arg) {
-		return (String)marshalers.get(arg).get();
+	public String getString(Character arg) throws ArgsException{
+		if(marshalers.containsKey(arg)){
+			ArgumentMarshaler stringMarshaler = marshalers.get(arg);
+			if(stringMarshaler instanceof StringArgumentMarshaler){
+				return (String)stringMarshaler.get();
+			}
+			else{
+				throw new InvalidArgumentMarshalerException("\nExpected: StringMarshaler\nActual: "+ stringMarshaler.toString());
+			}
+		}
+		else{
+			throw new InvalidArgumentName(arg, null);
+		}
 	}
 
-	public int getInt(Character arg) {
-		return (int)marshalers.get(arg).get();
+	public int getInt(Character arg) throws ArgsException{
+		if(marshalers.containsKey(arg)){
+			ArgumentMarshaler intMarshaler = marshalers.get(arg);
+			if(intMarshaler instanceof IntegerArgumentMarshaler){
+				return (int)intMarshaler.get();
+			}
+			else{
+				throw new InvalidArgumentMarshalerException("\nExpected: IntMarshaler\nActual: "+ intMarshaler.toString());
+			}
+		}
+		else{
+			throw new InvalidArgumentName(arg, null);
+		}
 	}
 
-	public double getDouble(Character arg) {
-		return (double)marshalers.get(arg).get();
+	public double getDouble(Character arg) throws ArgsException{
+		if(marshalers.containsKey(arg)){
+			ArgumentMarshaler doubleMarshaler = marshalers.get(arg);
+			if(doubleMarshaler instanceof DoubleArgumentMarshaler){
+				return (double)doubleMarshaler.get();
+			}
+			else{
+				throw new InvalidArgumentMarshalerException("\nExpected: DoubleMarshaler\nActual: "+ doubleMarshaler.toString());
+			}
+		}
+		else{
+			throw new InvalidArgumentName(arg, null);
+		}
 	}
 
-	public String[] getStringArray(Character arg) {
-		return (String[])marshalers.get(arg).get();
+	public String[] getStringArray(Character arg) throws ArgsException{
+		if(marshalers.containsKey(arg)){
+			ArgumentMarshaler stringArray = marshalers.get(arg);
+			if(stringArray instanceof StringArrayArgumentMarshaler){
+				return (String[]) stringArray.get();
+			}
+			else{
+				throw new InvalidArgumentMarshalerException("\nExpected: StringArrayMarshaler\nActual: "+stringArray.toString());
+			}
+		}
+		else{
+			throw new InvalidArgumentName(arg, null);
+		}
 	}
 
-	public Map<String, String> getMap(Character arg) {
-		return (Map<String, String>)marshalers.get(arg).get();
+	public Map<String, String> getMap(Character arg) throws ArgsException{
+		if(marshalers.containsKey(arg)){
+			ArgumentMarshaler mapMarshaler = marshalers.get(arg);
+			if(mapMarshaler instanceof MapArgumentMarshaler){
+				return (Map<String, String>)mapMarshaler.get();
+			}
+			else{
+				throw new InvalidArgumentMarshalerException("\nExpected: MapMarshaler\nActual: "+mapMarshaler.toString());
+			}
+		}
+		else{
+			throw new InvalidArgumentName(arg, null);
+		}
 	}
 }

@@ -13,6 +13,9 @@ public class InvalidArgumentFormat extends ArgsException{
 
 	@Override
 	public String errorMessage() {
-		return String.format("'%s' is not a valid argument format.", super.getErrorArgumentId());
+		Character errorArgumentId = super.getErrorArgumentId();
+		String errorParameter = super.getErrorParameter();
+		return String.format("'%s' is not a valid argument format.", errorParameter);
+
 	}
 }

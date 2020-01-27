@@ -28,6 +28,10 @@ public class ArgsTestPositive {
 	}
 
 	@Test
+	public void testSchemaNoArguments() throws Exception{
+		Args args = new Args("x#, y##", new String[]{});
+	}
+	@Test
 	public void testSimpleBooleanPresent() throws Exception {
 		Args args = new Args("x", new String[]{"-x"});
 		assertEquals(true, args.getBoolean('x'));

@@ -1,6 +1,9 @@
 package com.cleancoder.args;
 
 import com.cleancoder.args.exceptions.ArgsException;
+import com.cleancoder.args.exceptions.InvalidArgumentFormat;
+import com.cleancoder.args.exceptions.InvalidArgumentMarshalerException;
+import com.cleancoder.args.exceptions.InvalidInteger;
 import org.junit.Test;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
@@ -78,14 +81,14 @@ public class ArgsTestNegative {
 		assertEquals(1, args.nextArgument());
 	}
 
-	@Test
+	@Test(expected = InvalidArgumentFormat.class)
+	public void testInvalidBoolean() throws Exception{
+		Args arg = new Args("x", new String[]{"-x", "abcde"});
+	}
+
+	@Test(expected = InvalidInteger.class)
 	public void testInvalidInteger() throws Exception {
-		try {
-			new Args("x#", new String[]{"-x", "Forty two"});
-			fail();
-		} catch (ArgsException e) {
-			assertEquals("Forty two", e.getErrorParameter());
-		}
+		new Args("x#", new String[]{"-x", "Forty two"});
 	}
 
 	@Test
@@ -130,18 +133,51 @@ public class ArgsTestNegative {
 	}
 
 	@Test(expected=ArgsException.class)
-	public void malFormedMapArgument() throws Exception {
+	public void testMalFormedMapArgument() throws Exception {
 		Args args = new Args("f&", new String[] {"-f", "key1:val1,key2"});
 	}
 
-	@Test
+	@Test(expected = InvalidArgumentFormat.class)
 	public void testExtraArgumentsThatLookLikeFlags() throws Exception {
 		Args args = new Args("x,y", new String[]{"-x", "alpha", "-y", "beta"});
 		assertTrue(args.has('x'));
 		assertFalse(args.has('y'));
 		assertTrue(args.getBoolean('x'));
-		assertFalse(args.getBoolean('y'));
-		assertEquals(1, args.nextArgument());
 	}
 
+	@Test(expected = InvalidArgumentMarshalerException.class)
+	public void testInvalidArgumentMarshalerDouble() throws Exception{
+		Args arg = new Args("x#,y", new String[]{"-x","42","-y"});
+		arg.getDouble('x');
+	}
+
+	@Test(expected = InvalidArgumentMarshalerException.class)
+	public void testInvalidArgumentMarshalerInteger() throws Exception{
+		Args arg = new Args("x##", new String[]{"-x","42.32"});
+		arg.getInt('x');
+	}
+
+	@Test(expected = InvalidArgumentMarshalerException.class)
+	public void testInvalidArgumentMarshalerBoolean() throws Exception{
+		Args arg = new Args("x#,y", new String[]{"-x","42","-y"});
+		arg.getBoolean('x');
+	}
+
+	@Test(expected = InvalidArgumentMarshalerException.class)
+	public void testInvalidArgumentMarshalerMap() throws Exception{
+		Args arg = new Args("x#,y", new String[]{"-x","42","-y"});
+		arg.getMap('x');
+	}
+
+	@Test(expected = InvalidArgumentMarshalerException.class)
+	public void testInvalidArgumentMarshalerString() throws Exception{
+		Args arg = new Args("x#,y", new String[]{"-x","42","-y"});
+		arg.getString('x');
+	}
+
+	@Test(expected = InvalidArgumentMarshalerException.class)
+	public void testInvalidArgumentMarshalerStringArray() throws Exception{
+		Args arg = new Args("x#,y", new String[]{"-x","42","-y"});
+		arg.getStringArray('x');
+	}
 }
