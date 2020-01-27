@@ -1,9 +1,6 @@
 package com.cleancoder.args;
 
-import com.cleancoder.args.exceptions.ArgsException;
-import com.cleancoder.args.exceptions.InvalidArgumentFormat;
-import com.cleancoder.args.exceptions.InvalidArgumentMarshalerException;
-import com.cleancoder.args.exceptions.InvalidInteger;
+import com.cleancoder.args.exceptions.*;
 import org.junit.Test;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
@@ -132,6 +129,10 @@ public class ArgsTestNegative {
 		}
 	}
 
+	@Test(expected = MissingMap.class)
+	public void testMissingMap() throws Exception{
+		new Args("x&", new String[]{"-x"});
+	}
 	@Test(expected=ArgsException.class)
 	public void testMalFormedMapArgument() throws Exception {
 		Args args = new Args("f&", new String[] {"-f", "key1:val1,key2"});
@@ -180,4 +181,41 @@ public class ArgsTestNegative {
 		Args arg = new Args("x#,y", new String[]{"-x","42","-y"});
 		arg.getStringArray('x');
 	}
+
+	@Test(expected = InvalidArgumentName.class)
+	public void testStringMarshalerContainesKey() throws Exception{
+		Args arg = new Args("",new String[]{});
+		arg.getString('s');
+	}
+
+	@Test(expected = InvalidArgumentName.class)
+	public void testBooleanMarshalerContainesKey() throws Exception{
+		Args arg = new Args("",new String[]{});
+		arg.getBoolean('s');
+	}
+
+	@Test(expected = InvalidArgumentName.class)
+	public void testIntMarshalerContainesKey() throws Exception{
+		Args arg = new Args("",new String[]{});
+		arg.getInt('s');
+	}
+
+	@Test(expected = InvalidArgumentName.class)
+	public void testDoubleMarshalerContainesKey() throws Exception{
+		Args arg = new Args("",new String[]{});
+		arg.getDouble('s');
+	}
+
+	@Test(expected = InvalidArgumentName.class)
+	public void testMapMarshalerContainesKey() throws Exception{
+		Args arg = new Args("",new String[]{});
+		arg.getMap('s');
+	}
+
+	@Test(expected = InvalidArgumentName.class)
+	public void testStringArrayMarshalerContainesKey() throws Exception{
+		Args arg = new Args("",new String[]{});
+		arg.getStringArray('s');
+	}
+
 }
